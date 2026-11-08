@@ -81,6 +81,9 @@ jobs:
         if: env.RELEASE_TOKEN != ''
         env:
           GH_TOKEN: ${{ env.RELEASE_TOKEN }}
+        # Windows runners default to PowerShell, which cannot parse the `case`
+        # below. Bash ships on every runner, so the step is written once.
+        shell: bash
         run: |
           set -eu
           ext=tar.gz
